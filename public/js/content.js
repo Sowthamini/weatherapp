@@ -13,7 +13,7 @@ form.addEventListener('submit',(e)=>{
     content1.textContent="loading..."
     content2.textContent=""
 
-    fetch('http://localhost:3000/weather?address='+search.value).then((response)=>{
+    fetch('/weather?address='+search.value).then((response)=>{
     response.json().then((data)=>{
         if(data.error){
            content1.textContent=data.error
