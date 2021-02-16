@@ -4,6 +4,11 @@ const express=require('express')
 const request=require('request')
 const geocode=require('../src/utils/geocode')
 const forecast=require('../src/utils/forecast')
+const dotenv = require('dotenv');
+dotenv.config();
+const N=`${process.env.NAME}`
+console.log(N); // 8626
+
 
 //console.log(__dirname,__filename)
 const url=path.join(__dirname,'../public')
@@ -22,7 +27,7 @@ app.use(express.static(url))
 app.get('',(req,res)=>{
     res.render('index',{
         title:'Weather App',
-        name:'SolaiSowthamini'
+        name:`${process.env.NAME}`
     })
 })
 
@@ -34,7 +39,7 @@ app.get('',(req,res)=>{
     console.log(req.query)
      res.render('help',{
         title:'Help',
-         name:'solai',
+         name:`${process.env.NAME}`,
          age:26
      })
  })
@@ -42,7 +47,7 @@ app.get('',(req,res)=>{
  app.get('/about',(req,res)=>{
     res.render('about',{
         title:'About',
-        name:'solai'
+        name:`${process.env.NAME}`
     })
 })
 app.get('/weather',(req,res)=>{
@@ -70,7 +75,7 @@ app.get('/weather',(req,res)=>{
 app.get('/help/*',(req,res)=>{
     
     res.render('articlenotfound',{
-        name:'solai',
+        name:`${process.env.NAME}`,
         title:'404',
         errorMsg:'Help article was not found'
     })
@@ -78,7 +83,7 @@ app.get('/help/*',(req,res)=>{
 
 app.get('*',(req,res)=>{
     res.render('404',{
-        name:'solai',
+        name:`${process.env.NAME}`,
         title:'404',
         errorMsg:'Page Not found'
     })
